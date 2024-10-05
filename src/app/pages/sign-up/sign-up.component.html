@@ -4,6 +4,16 @@
 
     <div class="form-container">
         <div class="form-row">
+            <p><label for="name-input" class="bold">Nombre:</label></p>
+            <input id="name-input" type="text" placeholder="Ingese su nombre" class="input-style">
+        </div>
+
+        <div class="form-row">
+            <p><label for="usuario-input" class="bold">Usuario:</label></p>
+            <input id="usuario-input" type="text" placeholder="Ingese su nombre de usuario" class="input-style">
+        </div>
+
+        <div class="form-row">
             <p><label for="email-input" class="bold">Email:</label></p>
             <input id="password-input" type="email" placeholder="Ingese su email" class="input-style">
         </div>
@@ -12,11 +22,11 @@
             <p><label for="password-input" class="bold">Contraseña:</label></p>
             <input id="password-input" type="password" placeholder="Ingese su contraseña" class="input-style">
         </div>
-    
+
         <div class="btn-row">
-            <button class="btn btn-primary">Iniciar sesión</button>
+            <button class="btn btn-primary">Registrarse</button>
             <button class="btn"><img src="/assets/google-icon.png" alt=""></button>
-            <p>¿Aún no tienes una cuenta? <a routerLink="/sign-up" class="link">Crear una cuenta</a></p>
+            <p>Ya tienes una cuenta? <a routerLink="/login" class="link">Inicia sesión</a></p>
         </div>
     </div>
     
