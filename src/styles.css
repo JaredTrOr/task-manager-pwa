@@ -1,1 +1,89 @@
-/* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+:root {
+    /*COLORS*/
+    --background-color: #0A0C1E;
+    --container-color: #131633;
+    --input-color: #0D1027;
+    --btn-color: #5779D1;
+    --white-color: #F3F3F3;
+    --blue-link-color: #43A8F2;
+    --txt-input-color: #6F6F6F;
+
+    /*FONTS*/
+    --font-montserrat: "Montserrat", sans-serif; 
+}
+
+html {
+    background-color: var(--background-color);
+
+    /*FONTS*/
+    font-family: var(--font-montserrat);
+    font-weight: 400;
+    font-style: normal;
+    color: var(--white-color);
+}
+
+/*UTIL CLASSES*/
+.link { color: var(--blue-link-color); }
+.bold  { font-weight: bold; } 
+.fs-medium { font-size: medium; }
+.mt-1 { margin-top: 1rem; }
+.btn {
+    padding: 1rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.btn-primary {
+    background-color: var(--btn-color);
+    color: var(--white-color);
+    font-weight: bold;
+    font-size: medium;
+    height: 4rem;
+}
+
+/*MORE CLASESS*/
+.logo-section {
+    text-align: center;
+    margin-top: 2rem;
+}
+
+.main-container {
+    padding: 3rem;
+    /* width: 80%; */
+    max-width: 80rem;
+    margin: 3rem auto;
+    background-color: var(--container-color);
+    border-radius: 1rem;
+}
+
+.form-container {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.form-row {
+    display: flex;
+    flex-direction: column;
+}
+
+.input-style {
+    border: none;
+    background-color: var(--input-color);
+    padding: 1.5rem;
+    border-radius: 5px;
+    color: var(--white-color);
+    font-size: medium;
+}
+
+.btn-row {
+    margin: auto;
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+

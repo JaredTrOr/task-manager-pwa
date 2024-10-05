@@ -1,8 +1,8 @@
 {
-  "name": "task-manager-pwa",
-  "short_name": "task-manager-pwa",
-  "theme_color": "#1976d2",
-  "background_color": "#fafafa",
+  "name": "Tasky",
+  "short_name": "Tasky",
+  "theme_color": "#0A0C1E",
+  "background_color": "#0A0C1E",
   "display": "standalone",
   "scope": "./",
   "start_url": "./",
