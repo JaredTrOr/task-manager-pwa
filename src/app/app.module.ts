@@ -6,16 +6,24 @@ import { AppComponent } from './app.component';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { LoginComponent } from './pages/login/login.component';
 import { SignUpComponent } from './pages/sign-up/sign-up.component';
+import { SidebarComponent } from './components/sidebar/sidebar.component';
+import { HomeComponent } from './pages/home/home.component';
+import { FormsModule } from '@angular/forms';
+import { PickerComponent } from '@ctrl/ngx-emoji-mart';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    SignUpComponent
+    SignUpComponent,
+    SidebarComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    FormsModule,
+    PickerComponent,
     ServiceWorkerModule.register('ngsw-worker.js', {
       enabled: !isDevMode(),
       // Register the ServiceWorker as soon as the application is stable

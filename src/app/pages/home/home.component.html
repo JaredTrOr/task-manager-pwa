@@ -1,0 +1,21 @@
+<div class="container">
+  <div *ngIf="isResponsive" class="hamburger-container">
+    <div class="hamburger-menu" (click)="toggleSidebar()">
+      &#9776;
+    </div>
+
+    <img src="/assets/logo.png" width="150" alt="">
+  </div>
+  
+
+  <div *ngIf="isResponsive && isSidebarOpen" class="overlay" (click)="toggleSidebar()"></div>
+
+  <app-sidebar [isSidebarOpen]="isSidebarOpen"></app-sidebar>
+
+  <div class="content">
+    <button class="btn btn-add">+ Añadir una tarea</button>
+  </div>
+
+  <!-- <emoji-mart (emojiClick)="addEmoji($event)"></emoji-mart> -->
+
+</div>

@@ -1,7 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+@import '@ctrl/ngx-emoji-mart/picker';
 
 :root {
     /*COLORS*/
+    --black-color: #0000;
     --background-color: #0A0C1E;
     --container-color: #131633;
     --input-color: #0D1027;
@@ -9,6 +11,9 @@
     --white-color: #F3F3F3;
     --blue-link-color: #43A8F2;
     --txt-input-color: #6F6F6F;
+
+    --hover-color: #0e1126;
+
 
     /*FONTS*/
     --font-montserrat: "Montserrat", sans-serif; 
@@ -58,8 +63,9 @@ html {
 
 .main-container {
     padding: 3rem;
+    margin-inline: 1rem;
     /* width: 80%; */
-    max-width: 80rem;
+    max-width: 60rem;
     margin: 3rem auto;
     background-color: var(--container-color);
     border-radius: 1rem;

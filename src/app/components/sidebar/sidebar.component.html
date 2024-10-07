@@ -1,0 +1,93 @@
+<div class="sidebar" [class.active]="isSidebarOpen">
+    <ul class="top-item-list-container">
+        <li>
+            <a routerLink="">
+                <div class="icon-text">
+                    <!-- <img src="" alt=""> -->
+                    <i class="fa-solid fa-circle-user fa-2x"></i>
+                    Jared Alexander
+                </div>
+            </a>
+        </li>
+        <br><br>
+
+        <li>
+            <a routerLink="">
+                <div class="list-task-counter">
+                    <div class="icon-text">
+                        <i class="fa-regular fa-square-check"></i>
+                        <div>Por hacer</div>
+                    </div>
+    
+                    <div class="counter">1</div>
+                </div>
+            </a>
+        </li>
+        <li>
+            <a routerLink="">
+                <div class="list-task-counter">
+                    <div class="icon-text">
+                        <i class="fa-solid fa-inbox"></i>
+                        <div>Notificaciones</div>
+                    </div>
+    
+                    <div class="counter">1</div>
+                </div>
+            </a>
+            
+        </li>
+        <br>
+        <hr>
+        <li>
+            <a href="">
+                Listados:
+            </a>
+        </li>
+
+        <li class="btn-container">
+            <button class="btn btn-add-list">
+                + Añadir listado
+            </button>
+        </li>
+
+        <li class="lists-container">
+            <a href="">Listado 1</a>
+            <a href="">Listado 2</a>
+        </li>
+    </ul>
+
+    <ul class="bottom-item-list-container">
+        <li>
+            <a routerLink="">
+                <div class="list-task-counter">
+                    <div class="icon-text">
+                        <i class="fa-solid fa-circle-check"></i>
+                        <div>Completadas</div>
+                    </div>    
+                </div>
+            </a>
+        </li>
+
+        <li>
+            <a routerLink="">
+                <div class="list-task-counter">
+                    <div class="icon-text">
+                        <i class="fa-solid fa-trash-can"></i>
+                        <div>Eliminadas</div>
+                    </div>    
+                </div>
+            </a>
+        </li>
+
+        <li>
+            <a routerLink="">
+                <div class="list-task-counter">
+                    <div class="icon-text">
+                        <i class="fa-solid fa-right-from-bracket"></i>
+                        <div>Salir</div>
+                    </div>    
+                </div>
+            </a>
+        </li>
+    </ul>
+</div>
