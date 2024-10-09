@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, NgZone, Output } from '@angular/core';
 
 @Component({
   selector: 'app-sidebar',
@@ -7,4 +7,11 @@ import { Component, Input } from '@angular/core';
 })
 export class SidebarComponent {
   @Input() isSidebarOpen!:boolean;
+  @Input() isModalOpen!: boolean;
+  @Output() openModalEvent = new EventEmitter<boolean>();
+
+  openModal() {
+    this.isModalOpen = !this.isModalOpen;
+    this.openModalEvent.emit(this.isSidebarOpen);
+  }
 }
