@@ -10,6 +10,7 @@ import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { HomeComponent } from './pages/home/home.component';
 import { FormsModule } from '@angular/forms';
 import { PickerComponent } from '@ctrl/ngx-emoji-mart';
+import { ModalListComponent } from './components/modal-list/modal-list.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { PickerComponent } from '@ctrl/ngx-emoji-mart';
     LoginComponent,
     SignUpComponent,
     SidebarComponent,
-    HomeComponent
+    HomeComponent,
+    ModalListComponent
   ],
   imports: [
     BrowserModule,
