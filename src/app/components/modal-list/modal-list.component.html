@@ -1,0 +1,17 @@
+<div class="modal-list" [class.active]="isOpen">
+
+    <!-- Modal content -->
+    <div class="modal-content">
+        <span (click)="closeModal()" class="close">&times;</span>
+
+        <p class="modal-title">Nombre del listado</p>
+        <div class="modal-input-box">
+            <button class="btn btn-emoji" (click)="openEmojiSelector()">{{ newListType.emoji }}</button>
+            <input required [(ngModel)]="newListType.titleList" class="input-style input-title" type="text" placeholder="Ingrese el título">
+        </div>
+        <emoji-mart *ngIf="isEmojiSelectorOpen" class="emoji-selector" (emojiClick)="addEmoji($event)"></emoji-mart>
+
+        <button class="btn btn-primary">Añadir</button>
+    </div>
+  
+</div>
