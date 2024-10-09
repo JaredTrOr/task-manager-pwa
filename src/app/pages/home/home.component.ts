@@ -1,4 +1,4 @@
-import { Component, HostListener } from '@angular/core';
+import { Component, HostListener, NgZone } from '@angular/core';
 import TaskToDo from '../../models/task.interface';
 import ListType from '../../models/list.interface';
 
@@ -11,18 +11,13 @@ export class HomeComponent {
 
   isSidebarOpen = true;
   isResponsive = false;
+  isModalOpen = false;
 
   taskList: TaskToDo[] = [];
   listsTypes: ListType[] = [];
 
-  emoji: string = '';
-
   constructor() {
     this.checkScreenSize();
-  }
-
-  addEmoji(event: any) {
-
   }
 
   @HostListener('window:resize', ['$event'])
@@ -44,5 +39,13 @@ export class HomeComponent {
 
   toggleSidebar() {
     this.isSidebarOpen = !this.isSidebarOpen;
+  }
+
+  openModal(toggledValue : boolean) {
+    this.isModalOpen = toggledValue;
+  }
+
+  closeModal(toggledValue : boolean) {
+    this.isModalOpen = toggledValue;
   }
 }

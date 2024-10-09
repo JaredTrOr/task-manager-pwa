@@ -1,4 +1,6 @@
 <div class="container">
+
+  <!--SIDEBAR LOGIC-->
   <div *ngIf="isResponsive" class="hamburger-container">
     <div class="hamburger-menu" (click)="toggleSidebar()">
       &#9776;
@@ -6,16 +8,15 @@
 
     <img src="/assets/logo.png" width="150" alt="">
   </div>
-  
-
   <div *ngIf="isResponsive && isSidebarOpen" class="overlay" (click)="toggleSidebar()"></div>
+  <app-sidebar [isSidebarOpen]="isSidebarOpen" [isModalOpen]="isModalOpen" (openModalEvent)="openModal($event)"></app-sidebar>
 
-  <app-sidebar [isSidebarOpen]="isSidebarOpen"></app-sidebar>
-
+  <!--CONTENT-->
   <div class="content">
     <button class="btn btn-add">+ Añadir una tarea</button>
   </div>
 
-  <!-- <emoji-mart (emojiClick)="addEmoji($event)"></emoji-mart> -->
+  <!--MODAL-->
+  <app-modal-list [isOpen]="isModalOpen" (closeModalEvent)="closeModal($event)"></app-modal-list>
 
 </div>
