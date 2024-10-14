@@ -51,8 +51,11 @@
         </li>
 
         <li class="lists-container">
-            <a href="">Listado 1</a>
-            <a href="">Listado 2</a>
+            <a *ngFor="let list of listTypeArray" href="">
+                {{ list.emoji }}
+                <span style="margin-left: 1rem;"></span>
+                {{ list.titleList }}
+            </a>
         </li>
     </ul>
 

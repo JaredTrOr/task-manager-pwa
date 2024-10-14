@@ -13,7 +13,7 @@
     --txt-input-color: #6F6F6F;
     --modal-color: #161A3C;
     --hover-color: #0e1126;
-
+    --error-message-color: #c80000;
 
     /*FONTS*/
     --font-montserrat: "Montserrat", sans-serif; 
@@ -53,6 +53,11 @@ html {
     font-weight: bold;
     font-size: medium;
     height: 4rem;
+}
+
+.error-message {
+    color: var(--error-message-color);
+    font-weight: bold;
 }
 
 /*MORE CLASESS*/

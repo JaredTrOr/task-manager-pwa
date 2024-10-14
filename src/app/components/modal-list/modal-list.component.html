@@ -5,13 +5,23 @@
         <span (click)="closeModal()" class="close">&times;</span>
 
         <p class="modal-title">Nombre del listado</p>
-        <div class="modal-input-box">
-            <button class="btn btn-emoji" (click)="openEmojiSelector()">{{ newListType.emoji }}</button>
-            <input required [(ngModel)]="newListType.titleList" class="input-style input-title" type="text" placeholder="Ingrese el título">
+
+        <form [formGroup]="listForm" class="modal-input-box" (ngSubmit)="createListType()">
+            <button type="button" class="btn btn-emoji" (click)="openEmojiSelector()">{{ newListType.emoji }}</button>
+
+            <input formControlName="titleList" class="input-style input-title" type="text"
+                placeholder="Ingrese el título" required>
+        </form>
+        <div 
+            *ngIf="listForm.controls['titleList'].touched && listForm.controls['titleList'].errors?.['required']"
+            class="error-message"
+        >
+            *Ingrese un título
         </div>
+
         <emoji-mart *ngIf="isEmojiSelectorOpen" class="emoji-selector" (emojiClick)="addEmoji($event)"></emoji-mart>
 
-        <button class="btn btn-primary">Añadir</button>
+        <button type="submit" class="btn btn-primary" (click)="createListType()">Añadir</button>
     </div>
-  
+
 </div>
