@@ -6,7 +6,7 @@
 
         <p class="modal-title">Nombre del listado</p>
 
-        <form [formGroup]="listForm" class="modal-input-box" (ngSubmit)="createListType()">
+        <form [formGroup]="listForm" class="modal-input-box">
             <button type="button" class="btn btn-emoji" (click)="openEmojiSelector()">{{ newListType.emoji }}</button>
 
             <input formControlName="titleList" class="input-style input-title" type="text"

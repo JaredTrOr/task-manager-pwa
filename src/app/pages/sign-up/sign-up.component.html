@@ -2,32 +2,90 @@
 
 <section class="main-container">
 
-    <div class="form-container">
+    <form [formGroup]="formGroup" class="form-container" (ngSubmit)="onSubmit()">
         <div class="form-row">
             <p><label for="name-input" class="bold">Nombre:</label></p>
-            <input id="name-input" type="text" placeholder="Ingese su nombre" class="input-style">
+            <input formControlName="name" id="name-input" type="text" placeholder="Ingese su nombre" class="input-style">
+            <div 
+                *ngIf="formGroup.controls['name'].touched && formGroup.controls['name'].errors?.['required']"
+                class="error-message"
+            >
+                *Ingrese su nombre
+            </div>
+            <div 
+                *ngIf="formGroup.controls['name'].touched && formGroup.controls['name'].errors?.['pattern']"
+                class="error-message"
+            >
+                *Ingrese un nombre válido
+            </div>
         </div>
 
         <div class="form-row">
-            <p><label for="usuario-input" class="bold">Usuario:</label></p>
-            <input id="usuario-input" type="text" placeholder="Ingese su nombre de usuario" class="input-style">
+            <p><label for="username-input" class="bold">Usuario:</label></p>
+            <input formControlName="username" id="username-input" type="text" placeholder="Ingese su nombre de usuario" class="input-style">
+            <div 
+                *ngIf="formGroup.controls['username'].touched && formGroup.controls['username'].errors?.['required']"
+                class="error-message"
+            >
+                *Ingrese su usuario
+            </div>
+            <div 
+                *ngIf="formGroup.controls['username'].touched && formGroup.controls['username'].errors?.['pattern']"
+                class="error-message"
+            >
+                *Ingrese un usuario válido
+            </div>
         </div>
 
         <div class="form-row">
             <p><label for="email-input" class="bold">Email:</label></p>
-            <input id="password-input" type="email" placeholder="Ingese su email" class="input-style">
+            <input formControlName="email" id="email-input" type="email" placeholder="Ingese su email" class="input-style">
+            <div 
+                *ngIf="formGroup.controls['email'].touched && formGroup.controls['email'].errors?.['required']"
+                class="error-message"
+            >
+                *Ingrese su email
+            </div>
+            <div 
+                *ngIf="formGroup.controls['email'].touched && formGroup.controls['email'].errors?.['email']"
+                class="error-message"
+            >
+                *Ingrese un email válido
+            </div>
         </div>
     
         <div class="form-row">
             <p><label for="password-input" class="bold">Contraseña:</label></p>
-            <input id="password-input" type="password" placeholder="Ingese su contraseña" class="input-style">
+            <input formControlName="password" id="password-input" type="password" placeholder="Ingese su contraseña" class="input-style">
+
+            <div 
+                *ngIf="formGroup.controls['password'].touched && formGroup.controls['password'].errors?.['required']"
+                class="error-message"
+            >
+                *Ingrese una contraseña
+            </div>
+            <div 
+                *ngIf="formGroup.controls['password'].touched && formGroup.controls['password'].errors?.['pattern']"
+                class="error-message"
+            >
+                *Ingrese una contraseña válida
+            </div>
+        </div>
+
+        <div *ngIf="errorMessage" class="error-message">
+            {{ errorMessage }}
         </div>
 
         <div class="btn-row">
-            <button class="btn btn-primary">Registrarse</button>
-            <button class="btn"><img src="/assets/google-icon.png" alt=""></button>
+            <button type="submit" class="btn btn-primary">
+                
+                <app-loading [isLoading]="isLoading"></app-loading>
+
+                <span *ngIf="!isLoading">Registrarse</span>
+            </button>
+            <!-- <button class="btn"><img src="/assets/google-icon.png" alt=""></button> -->
             <p>Ya tienes una cuenta? <a routerLink="/login" class="link">Inicia sesión</a></p>
         </div>
-    </div>
+    </form>
     
 </section>
