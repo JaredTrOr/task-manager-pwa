@@ -1,0 +1,97 @@
+<div class="profile-container">
+    <div class="profile-item">
+        <a routerLink="">
+            <div class="icon-text">
+                <i class="fa-solid fa-circle-user fa-2x"></i>
+                Profile name
+            </div>
+        </a>
+    </div>
+
+    <div class="profile-item">
+        <a href="/home">
+            <div class="icon-text">
+                <i class="fa-solid fa-house fa-2x"></i>
+            </div>
+        </a>
+    </div>
+</div>
+
+<div>
+    <form [formGroup]="formGroup" (ngSubmit)="onSubmit()" class="create-task-container">
+        <div class="form-row">
+            <p><label for="title">Titulo:</label></p>
+            <input class="input-style" formControlName="title" id="title" type="text" placeholder="Ingrese el titulo">
+            <div 
+                *ngIf="formGroup.controls['title'].touched && formGroup.controls['title'].errors?.['required']"
+                class="error-message"
+            >
+                *Ingrese un título
+            </div>
+        </div>
+
+        <div class="form-row">
+            <p><label for="description">Descripción:</label></p>
+            <textarea 
+                formControlName="description" 
+                placeholder="Ingrese una descripcion"
+                class="input-style" 
+                rows="6" 
+                id="description"
+            ></textarea>
+            <div 
+                *ngIf="formGroup.controls['description'].touched && formGroup.controls['description'].errors?.['required']"
+                class="error-message"
+            >
+                *Ingrese una descripción
+            </div>
+        </div>
+
+        <div class="form-row grid-row">
+            <div>
+                <p><label for="deadline">Fecha límite:</label></p>
+                <input class="input-style" formControlName="deadline" id="deadline" type="date" placeholder="Ingrese el titulo">
+                <div 
+                    *ngIf="formGroup.controls['description'].touched && formGroup.controls['description'].errors?.['required']"
+                    class="error-message"
+                >
+                *Ingrese una fecha límite
+            </div>
+            </div>
+
+            <div>
+                <p>Listados</p>
+                <select class="input-style" formControlName="listType" id="listType">
+                    <option value="list1">Listado 1</option>
+                    <option value="list2">Listado 2</option>
+                    <option value="list3">Listado 3</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="form-row">
+            <p>¿Desea establecer un recordatorio?</p>
+            <div class="radio-container">
+                <div>
+                    <input formControlName="createReminder" value="yes" type="radio" id="yes">
+                    <label for="yes">Si</label>
+                </div>
+                
+                <div>
+                    <input formControlName="createReminder" value="no" type="radio" id="no">
+                    <label for="no">No</label>
+                </div>
+            </div>
+        </div>
+
+        <!-- Conditional display based on reminder choice -->
+        <div *ngIf="formGroup.get('createReminder')?.value === 'yes'" class="reminder-container">
+            <input type="number" formControlName="reminderAmount" placeholder="Cantidad" class="input-style">
+            <select formControlName="reminderUnitType" class="input-style">
+                <option *ngFor="let option of tipoUnidad">{{ option }}</option>
+            </select>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Añadir tarea</button>
+    </form>
+</div>
