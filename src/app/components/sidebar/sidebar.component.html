@@ -5,7 +5,7 @@
                 <div class="icon-text">
                     <!-- <img src="" alt=""> -->
                     <i class="fa-solid fa-circle-user fa-2x"></i>
-                    Nombre de usuario
+                    {{ userInfo?.name }}
                 </div>
             </a>
         </li>
@@ -19,7 +19,7 @@
                         <div>Por hacer</div>
                     </div>
     
-                    <div class="counter">1</div>
+                    <div class="counter">{{ taskService.getAmountOfTasksToDo() }}</div>
                 </div>
             </a>
         </li>
@@ -31,7 +31,7 @@
                         <div>Notificaciones</div>
                     </div>
     
-                    <div class="counter">1</div>
+                    <div class="counter">0</div>
                 </div>
             </a>
             
@@ -52,7 +52,7 @@
 
         <li class="lists-container">
             <div class="list-type" *ngFor="let list of listTypeService.getListTypeArray(); let index = index">
-                <a>
+                <a routerLink="">
                     <div class="list-type-link">
                         <div>{{ list.emoji }}</div>
                         <div>{{ list.title }}</div>
@@ -78,7 +78,7 @@
         </li>
 
         <li>
-            <a (click)="logout()">
+            <a routerLink="" (click)="logout()">
                 <div class="list-task-counter">
                     <div class="icon-text">
                         <i class="fa-solid fa-right-from-bracket"></i>

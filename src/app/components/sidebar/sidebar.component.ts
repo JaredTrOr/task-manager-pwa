@@ -4,6 +4,7 @@ import ListType from '../../models/list.interface';
 import { User } from '../../models/user.interface';
 import { AuthService } from '../../services/auth.service';
 import { UserService } from '../../services/user.service';
+import { TaskService } from '../../services/task.service';
 
 @Component({
   selector: 'app-sidebar',
@@ -16,25 +17,27 @@ export class SidebarComponent implements OnInit {
   @Output() openModalEvent = new EventEmitter<boolean>();
 
   // Http info
-  listTypeArray: ListType[] = [];
   userInfo?: User;
 
   constructor(
     public listTypeService: ListTypeService,
+    public taskService: TaskService,
+    private userService: UserService,
     private authService: AuthService
   ) { }
 
   ngOnInit(): void {
-    this.listTypeService.getListsTypes().subscribe({
+    // Get user info
+    this.userService.getUserInfo().subscribe({
       next: response => {
         if (response.data) {
-          this.listTypeService.setListTypeArray(response.data);
+          this.userInfo = response.data;
         }
       },
       error: err => {
         console.log(err);
       }
-    })
+    });
   }
 
   openModal() {
