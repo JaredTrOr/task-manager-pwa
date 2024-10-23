@@ -8,6 +8,8 @@ export default interface TaskToDo {
     title: string,
     description: string,
     deadline: Date,
-    type?: string,
-    reminder?: ReminderType
+    listType?: string,
+    reminder?: ReminderType,
+    checked: boolean,
+    creator?: string
 }
