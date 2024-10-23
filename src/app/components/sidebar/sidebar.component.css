@@ -73,10 +73,6 @@
   overflow-y: scroll;
 }
 
-.lists-container > * {
-  cursor: default;
-}
-
 .lists-container::-webkit-scrollbar {
   width: 5px;
   background-color: var(--container-color);
