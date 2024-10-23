@@ -22,6 +22,7 @@ export class HomeComponent implements OnInit {
 
   constructor(
     private taskService: TaskService,
+    private userService: UserService,
     public listTypesService: ListTypeService
   ) {
     this.checkScreenSize();
@@ -50,7 +51,19 @@ export class HomeComponent implements OnInit {
       error: err => {
         console.log(err);
       }
-    })
+    });
+
+    // Get user info
+    this.userService.getUserInfo().subscribe({
+      next: response => {
+        if (response.data) {
+          this.userInfo = response.data;
+        }
+      },
+      error: err => {
+        console.log(err);
+      }
+    });
 
   }
 

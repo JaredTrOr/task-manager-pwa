@@ -25,7 +25,6 @@ export class CreateTaskComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    private listTypeService: ListTypeService
   ) { }
 
   ngOnInit(): void {

@@ -14,31 +14,16 @@ import { TaskService } from '../../services/task.service';
 export class SidebarComponent implements OnInit {
   @Input() isSidebarOpen!:boolean;
   @Input() isModalOpen!: boolean;
+  @Input() userInfo?: User;
   @Output() openModalEvent = new EventEmitter<boolean>();
-
-  // Http info
-  userInfo?: User;
 
   constructor(
     public listTypeService: ListTypeService,
     public taskService: TaskService,
-    private userService: UserService,
     private authService: AuthService
   ) { }
 
-  ngOnInit(): void {
-    // Get user info
-    this.userService.getUserInfo().subscribe({
-      next: response => {
-        if (response.data) {
-          this.userInfo = response.data;
-        }
-      },
-      error: err => {
-        console.log(err);
-      }
-    });
-  }
+  ngOnInit(): void { }
 
   openModal() {
     this.isModalOpen = !this.isModalOpen;
@@ -50,14 +35,11 @@ export class SidebarComponent implements OnInit {
   }
 
   deleteList(index: number) {
-    // [element1, element2] [0]
     const element = this.listTypeService.getListTypeArray()[index];
     const listId = element._id;
 
-    //Borro del arreglo
     this.listTypeService.removeListType(index);
 
-    //Borrar de la BD
     this.listTypeService.deleteListType(listId!).subscribe({
       next: response => {
         console.log(response);
