@@ -1,24 +1,8 @@
-<div class="profile-container">
-    <div class="profile-item">
-        <a routerLink="">
-            <div class="icon-text">
-                <i class="fa-solid fa-circle-user fa-2x"></i>
-                Profile name
-            </div>
-        </a>
-    </div>
+<div class="create-task" [class.active]="isOpen">
 
-    <div class="profile-item">
-        <a href="/home">
-            <div class="icon-text">
-                <i class="fa-solid fa-house fa-2x"></i>
-            </div>
-        </a>
-    </div>
-</div>
-
-<div>
     <form [formGroup]="formGroup" (ngSubmit)="onSubmit()" class="create-task-container">
+        <span (click)="closeCreateTaskModal()" class="close">&times;</span>
+
         <div class="form-row">
             <p><label for="title">Titulo:</label></p>
             <input class="input-style" formControlName="title" id="title" type="text" placeholder="Ingrese el titulo">
@@ -55,16 +39,17 @@
                     *ngIf="formGroup.controls['description'].touched && formGroup.controls['description'].errors?.['required']"
                     class="error-message"
                 >
-                *Ingrese una fecha límite
-            </div>
+                    *Ingrese una fecha límite
+                </div>
             </div>
 
             <div>
                 <p>Listados</p>
                 <select class="input-style" formControlName="listType" id="listType">
-                    <option value="list1">Listado 1</option>
-                    <option value="list2">Listado 2</option>
-                    <option value="list3">Listado 3</option>
+                    <option value="ninguno">Ninguno</option>
+                    <option *ngFor="let option of listTypesArray" [value]="option.title">
+                       {{ option.title }}
+                    </option>
                 </select>
             </div>
         </div>
@@ -87,9 +72,16 @@
         <!-- Conditional display based on reminder choice -->
         <div *ngIf="formGroup.get('createReminder')?.value === 'yes'" class="reminder-container">
             <input type="number" formControlName="reminderAmount" placeholder="Cantidad" class="input-style">
+
             <select formControlName="reminderUnitType" class="input-style">
                 <option *ngFor="let option of tipoUnidad">{{ option }}</option>
             </select>
+        </div>
+        <div 
+            *ngIf="formGroup.controls['reminderAmount'].touched && formGroup.controls['reminderAmount'].errors?.['required']"
+            class="error-message"
+            >
+            *Ingrese una cantidad
         </div>
 
         <button type="submit" class="btn btn-primary">Añadir tarea</button>
