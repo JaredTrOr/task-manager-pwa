@@ -16,8 +16,22 @@
 
   <!--CONTENT-->
   <div class="content">
-    <button routerLink="/create-task" class="btn btn-add">+ Añadir una tarea</button>
+    <button 
+      (click)="openCreateTask()" 
+      class="btn btn-add"
+    >+ Añadir una tarea</button>
+    
+    <!--DISPLAY TASKS-->
   </div>
+
+
+  <!--CREATE TASK-->
+  <app-create-task
+    [isOpen]="isCreateTaskOpen"
+    [listTypesArray]="listTypesService.getListTypeArray()"
+    (closeCreateTaskEvent)="closeCreateTask($event)"
+  >
+  ></app-create-task>
 
   <!--MODAL-->
   <app-modal-list 
