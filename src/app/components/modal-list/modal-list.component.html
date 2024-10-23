@@ -9,11 +9,11 @@
         <form [formGroup]="listForm" class="modal-input-box">
             <button type="button" class="btn btn-emoji" (click)="openEmojiSelector()">{{ newListType.emoji }}</button>
 
-            <input formControlName="titleList" class="input-style input-title" type="text"
+            <input formControlName="title" class="input-style input-title" type="text"
                 placeholder="Ingrese el título" required>
         </form>
         <div 
-            *ngIf="listForm.controls['titleList'].touched && listForm.controls['titleList'].errors?.['required']"
+            *ngIf="listForm.controls['title'].touched && listForm.controls['title'].errors?.['required']"
             class="error-message"
         >
             *Ingrese un título

@@ -9,22 +9,24 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   styleUrl: './modal-list.component.css'
 })
 export class ModalListComponent implements OnInit{
+  // Modal events
   @Input() isOpen!: boolean;
   @Output() closeModalEvent = new EventEmitter<boolean>();
+
   isEmojiSelectorOpen: boolean = false;
   newListType!: ListType;
   listForm!: FormGroup;
 
   constructor(
     private listTypeService: ListTypeService,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
   ) { }
 
   ngOnInit(): void {
     this.newListType = this.listTypeService.getNewListType();
 
     this.listForm = this.formBuilder.group({
-      titleList: ['', Validators.required],
+      title: ['', Validators.required],
     });
   }
 
@@ -53,8 +55,16 @@ export class ModalListComponent implements OnInit{
       return;
     }
 
-    this.newListType.titleList = this.listForm.value.titleList;
-    this.listTypeService.createListType(this.newListType);
+    this.newListType.title = this.listForm.value.title;
+    this.listTypeService.createListType(this.newListType).subscribe({
+      next: response => {
+        console.log(response);
+        if (response.success) {
+          this.listTypeService.pushListType(response.data!)
+        }
+      }
+    })
+
     this.closeModal();
   }
 }
