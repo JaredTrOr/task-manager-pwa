@@ -73,6 +73,10 @@
   overflow-y: scroll;
 }
 
+.lists-container > * {
+  cursor: default;
+}
+
 .lists-container::-webkit-scrollbar {
   width: 5px;
   background-color: var(--container-color);
@@ -80,4 +84,22 @@
 
 .lists-container::-webkit-scrollbar-thumb {
   background-color: var(--black-color);
+}
+
+.list-type {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+}
+
+.list-type-link {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  width: 100%;
+}
+
+.trash-button {
+  cursor: pointer;
+  padding: 1rem;
 }

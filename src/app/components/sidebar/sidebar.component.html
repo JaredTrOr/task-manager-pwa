@@ -5,7 +5,7 @@
                 <div class="icon-text">
                     <!-- <img src="" alt=""> -->
                     <i class="fa-solid fa-circle-user fa-2x"></i>
-                    Jared Alexander
+                    Nombre de usuario
                 </div>
             </a>
         </li>
@@ -51,11 +51,17 @@
         </li>
 
         <li class="lists-container">
-            <a *ngFor="let list of listTypeArray" href="">
-                {{ list.emoji }}
-                <span style="margin-left: 1rem;"></span>
-                {{ list.titleList }}
-            </a>
+            <div class="list-type" *ngFor="let list of listTypeService.getListTypeArray(); let index = index">
+                <a>
+                    <div class="list-type-link">
+                        <div>{{ list.emoji }}</div>
+                        <div>{{ list.title }}</div>
+                    </div>
+                </a>
+                <div (click)="deleteList(index)" class="trash-button">
+                    <i class="fa-solid fa-trash-can"></i>
+                </div>
+            </div>
         </li>
     </ul>
 
@@ -72,18 +78,7 @@
         </li>
 
         <li>
-            <a routerLink="">
-                <div class="list-task-counter">
-                    <div class="icon-text">
-                        <i class="fa-solid fa-trash-can"></i>
-                        <div>Eliminadas</div>
-                    </div>    
-                </div>
-            </a>
-        </li>
-
-        <li>
-            <a routerLink="">
+            <a (click)="logout()">
                 <div class="list-task-counter">
                     <div class="icon-text">
                         <i class="fa-solid fa-right-from-bracket"></i>
