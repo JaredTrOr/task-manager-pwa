@@ -1,0 +1,20 @@
+<section>
+    <button (click)="openCreateTask()" class="btn btn-add">
+        + Añadir una tarea
+    </button>
+
+    <!--DISPLAY TASKS-->
+    <app-display-tasks 
+        [tasks]="taskService.getUncheckedTasks()"
+        [listTypesArray]="listTypesService.getListTypeArray()" 
+        [completed]="false"
+    >
+    </app-display-tasks>
+
+    <!--CREATE TASK-->
+    <app-create-task 
+        [isOpen]="isCreateTaskOpen" 
+        [listTypesArray]="listTypesService.getListTypeArray()"
+        (closeCreateTaskEvent)="closeCreateTask($event)">
+    </app-create-task>
+</section>

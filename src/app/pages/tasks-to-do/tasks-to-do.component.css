@@ -1,0 +1,12 @@
+section {
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+}
+
+.btn-add {
+    padding: 2rem;
+    background-color: var(--input-color);
+    color: var(--txt-input-color);
+    font-size: larger;
+}
