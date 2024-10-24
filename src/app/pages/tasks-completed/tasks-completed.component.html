@@ -1,0 +1,8 @@
+<section>
+    <app-display-tasks 
+        [tasks]="taskService.getCheckedTasks()"
+        [listTypesArray]="listTypeService.getListTypeArray()"
+        [completed]="true"
+    >
+    </app-display-tasks>
+</section>
