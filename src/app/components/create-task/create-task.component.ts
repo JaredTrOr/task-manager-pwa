@@ -4,6 +4,7 @@ import { User } from '../../models/user.interface';
 import { ListTypeService } from '../../services/list-type.service';
 import ListType from '../../models/list.interface';
 import { TaskService } from '../../services/task.service';
+import TaskToDo from '../../models/task.interface';
 
 @Component({
   selector: 'app-create-task',
@@ -25,6 +26,7 @@ export class CreateTaskComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
+    private taskService: TaskService
   ) { }
 
   ngOnInit(): void {
@@ -58,8 +60,36 @@ export class CreateTaskComponent implements OnInit {
       this.formGroup.markAllAsTouched();
       return;
     }
-    
-    console.log(this.formGroup.value);
+
+    const newTask :TaskToDo = {
+      title: this.formGroup.get('title')?.value,
+      description: this.formGroup.get('description')?.value,
+      deadline: this.formGroup.get('deadline')?.value,
+      listType: this.formGroup.get('listType')?.value,
+      checked: false
+    }
+
+    if (this.formGroup.get('createReminder')?.value === 'yes') {
+      newTask.reminder = {
+        unitTime: this.formGroup.get('reminderUnitType')?.value,
+        amount: this.formGroup.get('reminderAmount')?.value
+      }
+    }
+
+    this.taskService.createTask(newTask).subscribe({
+      next: (response) => {
+        if (response.success) {
+          this.taskService.pushTask(response.data!);
+          this.closeCreateTaskModal();
+          return;
+        }
+
+        console.log(response.message);
+      },
+      error: (error) => {
+        console.log(error);
+      }
+    });
   }
 
   closeCreateTaskModal() {

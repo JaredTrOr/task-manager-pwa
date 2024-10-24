@@ -13,7 +13,7 @@ import { PickerComponent } from '@ctrl/ngx-emoji-mart';
 import { ModalListComponent } from './components/modal-list/modal-list.component';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { LoadingComponent } from './components/loading/loading.component';
-import { CreateTaskComponent } from './pages/create-task/create-task.component';
+import { CreateTaskComponent } from './components/create-task/create-task.component';
 import { TokenInterceptorService } from './services/token-interceptor.service';
 
 @NgModule({

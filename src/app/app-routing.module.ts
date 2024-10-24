@@ -4,7 +4,7 @@ import { LoginComponent } from './pages/login/login.component';
 import { SignUpComponent } from './pages/sign-up/sign-up.component';
 import { HomeComponent } from './pages/home/home.component';
 import { authGuard } from './services/auth.guard';
-import { CreateTaskComponent } from './pages/create-task/create-task.component';
+import { CreateTaskComponent } from './components/create-task/create-task.component';
 
 const routes: Routes = [
   {
@@ -21,12 +21,6 @@ const routes: Routes = [
     path: 'home',
     component: HomeComponent,
     title: 'Home',
-    canActivate: [authGuard]
-  },
-  {
-    path: 'create-task',
-    component: CreateTaskComponent,
-    title: 'Crear tarea',
     canActivate: [authGuard]
   },
   {
