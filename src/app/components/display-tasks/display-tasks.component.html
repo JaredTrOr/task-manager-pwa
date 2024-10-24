@@ -1,0 +1,41 @@
+<div class="no-tasks-container" *ngIf="!tasks.length">
+    <img src="assets/notebook.png" alt="">
+    <p *ngIf="!completed">No hay tareas por realizar</p>
+    <p *ngIf="completed">No hay tareas completadas</p>
+</div>
+
+
+
+<div *ngIf="tasks.length" class="tasks-container">
+    <h2 *ngIf="completed">Tareas completadas:</h2>
+    <h2 *ngIf="!completed">Tareas por hacer:</h2>
+
+    <button *ngIf="completed" class="btn btn-borrar">
+        Borrar tareas completadas
+    </button>
+
+    <div class="card-task" *ngFor="let task of tasks">
+        
+        <input 
+            (click)="completeTask(task)" 
+            class="input-checkbox" 
+            type="checkbox"
+            [checked]="task.checked"
+        >
+
+        <div class="card-task-body">
+
+            <div class="card-task-information">
+                <p [class.checked]="task.checked" class="task-title">{{ task.title }}</p>
+                <p>{{ getListType(task.listType!) }}</p>
+                <p>{{ task.description }}</p>
+            </div>
+
+            <div>
+                <p class="bold">Fecha limite</p>
+                <br>
+                <p>{{ convertDateToString(task.deadline.toString()) }}</p>
+            </div>
+        </div>
+    </div>
+</div>
