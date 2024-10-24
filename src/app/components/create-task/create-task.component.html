@@ -46,9 +46,9 @@
             <div>
                 <p>Listados</p>
                 <select class="input-style" formControlName="listType" id="listType">
-                    <option value="ninguno">Ninguno</option>
-                    <option *ngFor="let option of listTypesArray" [value]="option.title">
-                       {{ option.title }}
+                    <option value="general">General</option>
+                    <option *ngFor="let option of listTypesArray" [value]="option._id">
+                        {{ option.emoji }}{{ option.title }}
                     </option>
                 </select>
             </div>

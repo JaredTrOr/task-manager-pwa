@@ -38,7 +38,7 @@ export class CreateTaskComponent implements OnInit {
       title: ['', Validators.required],
       description: ['', Validators.required],
       deadline: ['', Validators.required],
-      listType: ['ninguno', Validators.required],
+      listType: ['general', Validators.required],
       createReminder: ['yes', Validators.required],
       reminderAmount: [''],
       reminderUnitType: ['minutos'],
