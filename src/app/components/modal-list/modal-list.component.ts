@@ -35,6 +35,7 @@ export class ModalListComponent implements OnInit{
     if (this.isEmojiSelectorOpen) {
       this.isEmojiSelectorOpen = !this.isEmojiSelectorOpen;
     }
+    this.listForm.reset();
     this.newListType = this.listTypeService.getNewListType();
     this.closeModalEvent.emit(this.isOpen);
   }
