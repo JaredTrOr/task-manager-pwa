@@ -99,3 +99,7 @@
   cursor: pointer;
   padding: 1rem;
 }
+
+.single-word {
+  padding: 1.5rem;
+}

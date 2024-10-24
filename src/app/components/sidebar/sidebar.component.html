@@ -1,7 +1,7 @@
 <div class="sidebar" [class.active]="isSidebarOpen">
     <ul class="top-item-list-container">
         <li>
-            <a routerLink="">
+            <a routerLink="/profile">
                 <div class="icon-text">
                     <!-- <img src="" alt=""> -->
                     <i class="fa-solid fa-circle-user fa-2x"></i>
@@ -12,7 +12,7 @@
         <br><br>
 
         <li>
-            <a routerLink="">
+            <a routerLink="/home">
                 <div class="list-task-counter">
                     <div class="icon-text">
                         <i class="fa-regular fa-square-check"></i>
@@ -24,7 +24,19 @@
             </a>
         </li>
         <li>
-            <a routerLink="">
+            <a routerLink="/completed-tasks">
+                <div class="list-task-counter">
+                    <div class="icon-text">
+                        <i class="fa-solid fa-circle-check"></i>
+                        <div>Completadas</div>
+                    </div>    
+
+                    <div class="counter">{{ taskService.getAmountOfCompletedTasks() }}</div>
+                </div>
+            </a>
+        </li>
+        <li>
+            <a routerLink="/notifications">
                 <div class="list-task-counter">
                     <div class="icon-text">
                         <i class="fa-solid fa-inbox"></i>
@@ -39,9 +51,9 @@
         <br>
         <hr>
         <li>
-            <a href="">
+            <p class="single-word">
                 Listados:
-            </a>
+            </p>
         </li>
 
         <li class="btn-container">
@@ -52,7 +64,7 @@
 
         <li class="lists-container">
             <div class="list-type" *ngFor="let list of listTypeService.getListTypeArray(); let index = index">
-                <a routerLink="">
+                <a routerLink="list-types/{{ list._id }}">
                     <div class="list-type-link">
                         <div>{{ list.emoji }}</div>
                         <div>{{ list.title }}</div>
@@ -66,17 +78,6 @@
     </ul>
 
     <ul class="bottom-item-list-container">
-        <li>
-            <a routerLink="">
-                <div class="list-task-counter">
-                    <div class="icon-text">
-                        <i class="fa-solid fa-circle-check"></i>
-                        <div>Completadas</div>
-                    </div>    
-                </div>
-            </a>
-        </li>
-
         <li>
             <a routerLink="" (click)="logout()">
                 <div class="list-task-counter">
