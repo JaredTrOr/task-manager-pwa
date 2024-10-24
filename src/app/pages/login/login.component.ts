@@ -46,7 +46,6 @@ export class LoginComponent implements OnInit {
         }
         else {
           this.authService.setToken(response.data?.token!);
-          // Establish user data ->
           this.router.navigate(['/home']);
           this.formGroup.reset();
         }
