@@ -1,4 +1,4 @@
-<div class="container">
+<section class="main-section">
 
   <!--SIDEBAR LOGIC-->
   <div *ngIf="isResponsive" class="hamburger-container">
@@ -15,29 +15,15 @@
     (openModalEvent)="openModal($event)">
   </app-sidebar>
 
-  <!--CONTENT-->
-  <div class="content">
-    <button 
-      (click)="openCreateTask()" 
-      class="btn btn-add"
-    >+ Añadir una tarea</button>
-    
-    <!--DISPLAY TASKS-->
-  </div>
-
-
-  <!--CREATE TASK-->
-  <app-create-task
-    [isOpen]="isCreateTaskOpen"
-    [listTypesArray]="listTypesService.getListTypeArray()"
-    (closeCreateTaskEvent)="closeCreateTask($event)"
-  >
-  ></app-create-task>
-
   <!--MODAL-->
   <app-modal-list 
     [isOpen]="isModalOpen"
     (closeModalEvent)="closeModal($event)">
   </app-modal-list>
 
-</div>
+  <!--CONTENT-->
+  <div class="content">
+    <router-outlet/>
+  </div>
+
+</section>

@@ -15,13 +15,9 @@ export class HomeComponent implements OnInit {
   isSidebarOpen = true;
   isResponsive = false;
   isModalOpen = false;
-  isCreateTaskOpen = false;
-
   userInfo?: User;
 
-
   constructor(
-    private taskService: TaskService,
     private userService: UserService,
     public listTypesService: ListTypeService
   ) {
@@ -29,17 +25,6 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    // Get tasks
-    this.taskService.getTasks().subscribe({
-      next: response => {
-        if (response.data) {
-          this.taskService.setTaskArray(response.data);
-        }
-      },
-      error: err => {
-        console.log(err);
-      }
-    });
 
     // Get list types
     this.listTypesService.getListsTypes().subscribe({
@@ -94,13 +79,5 @@ export class HomeComponent implements OnInit {
 
   closeModal(toggledValue : boolean) {
     this.isModalOpen = toggledValue;
-  }
-
-  openCreateTask() {
-    this.isCreateTaskOpen = true;
-  }
-
-  closeCreateTask(toggledValue : boolean) {
-    this.isCreateTaskOpen = toggledValue;
   }
 }
