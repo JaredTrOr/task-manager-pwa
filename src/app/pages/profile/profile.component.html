@@ -1,1 +1,56 @@
-<p>profile works!</p>
+<section *ngIf="userInfo">
+
+    <div class="user-image">
+        <img class="profile-picture" src="/assets/user-image.jpg" alt="">
+        <span class="camara-icon pointer">
+            <i class="fa-solid fa-camera fa-3x"></i>
+        </span>
+    </div>
+
+    <div class="user-information">
+
+        <form 
+            [formGroup]="formGroup" 
+            (ngSubmit)="editProfile()" 
+            class="form-container"
+        >
+            <div class="form-row">
+                <p><label for="name">Nombre: </label></p>
+                <input 
+                    id="name" 
+                    type="text" 
+                    formGroupName="name" 
+                    [value]="userInfo.name"
+                    placeholder="Ingrese su nombre"
+                    class="input-style"
+                >
+            </div>
+
+            <div class="form-row">
+                <p><label for="username">Usuario: </label></p>
+                <input 
+                    id="username" 
+                    type="text" 
+                    formGroupName="username" 
+                    [value]="userInfo.username"
+                    placeholder="Ingrese su usuario"
+                    class="input-style"
+                >
+            </div>
+
+            <div class="form-row">
+                <p><label for="username">Email: </label></p>
+                <input 
+                    id="email" 
+                    type="email" 
+                    formGroupName="email" 
+                    [value]="userInfo.email"
+                    placeholder="Ingrese su email"
+                    class="input-style"
+                >
+            </div>
+            
+            <button class="btn btn-primary">Editar perfil</button>
+        </form>
+    </div>  
+</section>

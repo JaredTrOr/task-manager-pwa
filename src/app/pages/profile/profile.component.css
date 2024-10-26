@@ -1,0 +1,29 @@
+
+section {
+    width: 80%;
+    margin: 4rem auto;
+}
+
+.user-information {
+    margin-top: 2rem;
+}
+
+.user-image {
+    text-align: center;
+    position: relative;
+}
+
+.title {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}
+
+.profile-picture {
+    width: 15rem;
+    border-radius: 50%;
+}
+
+.camara-icon {
+    position: absolute;
+    bottom: 0;
+}
