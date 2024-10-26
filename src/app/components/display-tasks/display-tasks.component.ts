@@ -34,7 +34,35 @@ export class DisplayTasksComponent {
   }
 
   getListType(listTypeId: string): string {
+
+    if (listTypeId === 'general') return 'General';
+
     const listType = this.listTypesArray.find(listType => listType._id === listTypeId);
     return `${listType?.emoji} ${listType?.title}`;
+  }
+
+  removeCompletedTasks() {
+    this.taskService.removeCompletedTasks()
+    this.taskService.deleteCompletedTasks().subscribe({
+      next: (response) => {
+        console.log(response)
+      },
+      error: (err) => {
+        console.log(err)
+      }
+    })
+  }
+
+  removeTask(index: number) {
+    const task = this.taskService.getTaskArray()[index];
+    this.taskService.removeTask(index);
+    this.taskService.deleteTask(task._id!).subscribe({
+      next: response => {
+        console.log(response);
+      },
+      error: err => {
+        console.log(err);
+      }
+    })
   }
 }

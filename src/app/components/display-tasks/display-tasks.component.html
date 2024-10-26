@@ -4,17 +4,15 @@
     <p *ngIf="completed">No hay tareas completadas</p>
 </div>
 
-
-
 <div *ngIf="tasks.length" class="tasks-container">
     <h2 *ngIf="completed">Tareas completadas:</h2>
     <h2 *ngIf="!completed">Tareas por hacer:</h2>
 
-    <button *ngIf="completed" class="btn btn-borrar">
+    <button (click)="removeCompletedTasks()" *ngIf="completed" class="btn btn-borrar">
         Borrar tareas completadas
     </button>
 
-    <div class="card-task" *ngFor="let task of tasks">
+    <div class="card-task" *ngFor="let task of tasks, let index = index">
         
         <input 
             (click)="completeTask(task)" 
@@ -26,16 +24,22 @@
         <div class="card-task-body">
 
             <div class="card-task-information">
-                <p [class.checked]="task.checked" class="task-title">{{ task.title }}</p>
+                <div [class.checked]="task.checked" class="task-title">
+                    {{ task.title }}
+                    <i *ngIf="!completed" class="fa-solid fa-pen-to-square edit-task"></i>
+                </div>
                 <p>{{ getListType(task.listType!) }}</p>
-                <p>{{ task.description }}</p>
+                <div class="card-task-description">{{ task.description }}</div>
             </div>
 
-            <div>
-                <p class="bold">Fecha limite</p>
-                <br>
-                <p>{{ convertDateToString(task.deadline.toString()) }}</p>
+            <div *ngIf="!completed" (click)="removeTask(index)" class="card-task-trash">
+                <i class="white fa-solid fa-trash-can fa-2x"></i>
             </div>
+
+        </div>
+
+        <div class="card-date">
+            <p>{{ convertDateToString(task.deadline.toString()) }}</p>
         </div>
     </div>
 </div>

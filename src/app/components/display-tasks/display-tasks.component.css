@@ -22,6 +22,18 @@
     display: flex;
     align-items: center;
     gap: 3rem;
+    position: relative;
+}
+
+.card-task-trash {
+    cursor: pointer;
+}
+
+.card-task-body {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .task-title {
@@ -38,12 +50,10 @@
     gap: 1rem;
 }
 
-.card-task-body {
-    display: flex;
-    gap: 2rem;
-    align-items: center;
-    justify-content: space-between;
-    width: 100%;
+.card-date {
+    position: absolute;
+    right: 1rem;
+    bottom: 1rem;
 }
 
 .input-checkbox {
@@ -60,3 +70,10 @@
     font-size: larger;
 }
 
+.card-task-description {
+    white-space: pre-wrap;
+}
+
+.edit-task {
+    cursor: pointer;
+}
