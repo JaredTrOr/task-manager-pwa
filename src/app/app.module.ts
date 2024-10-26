@@ -15,6 +15,12 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { LoadingComponent } from './components/loading/loading.component';
 import { CreateTaskComponent } from './components/create-task/create-task.component';
 import { TokenInterceptorService } from './services/token-interceptor.service';
+import { DisplayTasksComponent } from './components/display-tasks/display-tasks.component';
+import { TasksToDoComponent } from './pages/tasks-to-do/tasks-to-do.component';
+import { NotificationsComponent } from './pages/notifications/notifications.component';
+import { TasksCompletedComponent } from './pages/tasks-completed/tasks-completed.component';
+import { SelectedListTypeComponent } from './pages/selected-list-type/selected-list-type.component';
+import { ProfileComponent } from './pages/profile/profile.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +31,13 @@ import { TokenInterceptorService } from './services/token-interceptor.service';
     HomeComponent,
     ModalListComponent,
     LoadingComponent,
-    CreateTaskComponent
+    CreateTaskComponent,
+    DisplayTasksComponent,
+    TasksToDoComponent,
+    NotificationsComponent,
+    TasksCompletedComponent,
+    SelectedListTypeComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,
