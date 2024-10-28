@@ -15,10 +15,9 @@ export class HomeComponent implements OnInit {
   isSidebarOpen = true;
   isResponsive = false;
   isModalOpen = false;
-  userInfo?: User;
 
   constructor(
-    private userService: UserService,
+    public userService: UserService,
     public listTypesService: ListTypeService
   ) {
     this.checkScreenSize();
@@ -42,7 +41,7 @@ export class HomeComponent implements OnInit {
     this.userService.getUserInfo().subscribe({
       next: response => {
         if (response.data) {
-          this.userInfo = response.data;
+          this.userService.setUserInfo(response.data);
         }
       },
       error: err => {

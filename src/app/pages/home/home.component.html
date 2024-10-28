@@ -11,7 +11,7 @@
   <app-sidebar 
     [isSidebarOpen]="isSidebarOpen" 
     [isModalOpen]="isModalOpen" 
-    [userInfo]="userInfo"
+    [userInfo]="userService.getUserInfoProvider()"
     (openModalEvent)="openModal($event)">
   </app-sidebar>
 
