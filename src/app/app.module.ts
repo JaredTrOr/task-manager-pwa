@@ -21,6 +21,9 @@ import { NotificationsComponent } from './pages/notifications/notifications.comp
 import { TasksCompletedComponent } from './pages/tasks-completed/tasks-completed.component';
 import { SelectedListTypeComponent } from './pages/selected-list-type/selected-list-type.component';
 import { ProfileComponent } from './pages/profile/profile.component';
+import { AngularFireModule } from '@angular/fire/compat';
+import { AngularFireStorageModule } from '@angular/fire/compat/storage';
+import { environment } from '../environments/environment.development';
 
 @NgModule({
   declarations: [
@@ -46,6 +49,8 @@ import { ProfileComponent } from './pages/profile/profile.component';
     FormsModule,
     PickerComponent,
     HttpClientModule,
+    AngularFireModule.initializeApp(environment.firebaseConfig),
+    AngularFireStorageModule,
     ServiceWorkerModule.register('ngsw-worker.js', {
       enabled: !isDevMode(),
       // Register the ServiceWorker as soon as the application is stable
