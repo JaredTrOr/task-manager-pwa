@@ -1,56 +1,64 @@
-<section *ngIf="userInfo">
-
+<section *ngIf="userService.getUserInfoProvider()">
     <div class="user-image">
-        <img class="profile-picture" src="/assets/user-image.jpg" alt="">
+        <img class="profile-picture" [src]="userService.getUserInfoProvider().image" alt="">
         <span class="camara-icon pointer">
-            <i class="fa-solid fa-camera fa-3x"></i>
+            <input (change)="changeProfilePhoto($event)" type="file" id="fileInput" style="display: none;">
+ 
+            <label for="fileInput" class="file-label">
+                <i class="fa-solid fa-camera fa-3x"></i>
+            </label>
         </span>
     </div>
 
     <div class="user-information">
 
-        <form 
-            [formGroup]="formGroup" 
-            (ngSubmit)="editProfile()" 
-            class="form-container"
-        >
+        <form [formGroup]="formGroup" (ngSubmit)="editProfile()" class="form-container">
             <div class="form-row">
                 <p><label for="name">Nombre: </label></p>
-                <input 
-                    id="name" 
-                    type="text" 
-                    formGroupName="name" 
-                    [value]="userInfo.name"
-                    placeholder="Ingrese su nombre"
-                    class="input-style"
-                >
+                <input id="name" type="text" formControlName="name"
+                    placeholder="Ingrese su nombre" class="input-style">
+
+                <div *ngIf="formGroup.controls['name'].touched && formGroup.controls['name'].errors?.['required']"
+                    class="error-message">
+                    *Ingrese su nombre
+                </div>
+                <div *ngIf="formGroup.controls['name'].touched && formGroup.controls['name'].errors?.['pattern']"
+                    class="error-message">
+                    *Ingrese un nombre válido
+                </div>
             </div>
 
             <div class="form-row">
                 <p><label for="username">Usuario: </label></p>
-                <input 
-                    id="username" 
-                    type="text" 
-                    formGroupName="username" 
-                    [value]="userInfo.username"
-                    placeholder="Ingrese su usuario"
-                    class="input-style"
-                >
+                <input id="username" type="text" formControlName="username"
+                    placeholder="Ingrese su usuario" class="input-style">
+
+                <div *ngIf="formGroup.controls['username'].touched && formGroup.controls['username'].errors?.['required']"
+                    class="error-message">
+                    *Ingrese su usuario
+                </div>
+                <div *ngIf="formGroup.controls['username'].touched && formGroup.controls['username'].errors?.['pattern']"
+                    class="error-message">
+                    *Ingrese un usuario válido
+                </div>
             </div>
 
             <div class="form-row">
                 <p><label for="username">Email: </label></p>
-                <input 
-                    id="email" 
-                    type="email" 
-                    formGroupName="email" 
-                    [value]="userInfo.email"
-                    placeholder="Ingrese su email"
-                    class="input-style"
-                >
+                <input id="email" type="email" formControlName="email"
+                    placeholder="Ingrese su email" class="input-style">
+
+                <div *ngIf="formGroup.controls['email'].touched && formGroup.controls['email'].errors?.['required']"
+                    class="error-message">
+                    *Ingrese su email
+                </div>
+                <div *ngIf="formGroup.controls['email'].touched && formGroup.controls['email'].errors?.['pattern']"
+                    class="error-message">
+                    *Ingrese un email válido
+                </div>
             </div>
-            
+
             <button class="btn btn-primary">Editar perfil</button>
         </form>
-    </div>  
+    </div>
 </section>

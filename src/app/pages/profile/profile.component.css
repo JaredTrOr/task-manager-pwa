@@ -20,10 +20,27 @@ section {
 
 .profile-picture {
     width: 15rem;
+    height: 15rem;
     border-radius: 50%;
+    object-fit: cover;
 }
 
 .camara-icon {
     position: absolute;
     bottom: 0;
+}
+
+/*CAMARA STYLE*/
+.file-label {
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    border-radius: 8px;
+    transition: background-color 0.3s;
+}
+
+.file-label:hover {
+    background-color: var(--container-color);
 }
