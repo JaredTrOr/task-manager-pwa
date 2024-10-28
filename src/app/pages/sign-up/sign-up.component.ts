@@ -38,7 +38,7 @@ export class SignUpComponent implements OnInit {
     }
 
     this.isLoading = true;
-
+    this.formGroup.value.image = '/assets/user-image.jpg'; // Set default image
     this.authService.signup(this.formGroup.value)
     .subscribe({
       next: response => {
@@ -52,8 +52,7 @@ export class SignUpComponent implements OnInit {
           this.errorMessage = response.message;
         }
         else {
-          this.authService.setToken(response.data?.token!);
-          // Establish user data ->
+          this.authService.setToken(response.data?.token!); 
           this.router.navigate(['/home']);
           this.formGroup.reset();
         }
