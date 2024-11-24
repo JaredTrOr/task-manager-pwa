@@ -12,6 +12,7 @@ export class LoginComponent implements OnInit {
 
   formGroup!: FormGroup;
   errorMessage: string = '';
+  isLoading: boolean = false;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -32,6 +33,7 @@ export class LoginComponent implements OnInit {
       return;
     }
 
+    this.isLoading = true;
     this.authService.login(this.formGroup.value).subscribe({
       next: response => {
         if (!response.success) {
@@ -55,5 +57,7 @@ export class LoginComponent implements OnInit {
         console.log(err);
       } 
     });
+
+    this.isLoading = false;
   }
 }

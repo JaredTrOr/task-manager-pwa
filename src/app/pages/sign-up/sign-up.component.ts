@@ -46,23 +46,26 @@ export class SignUpComponent implements OnInit {
           if (response.message.includes('error')) {
             this.errorMessage = 'Hubo un error al realizar el registro, por favor intentar denuevo';
             console.log(response.message);
+            this.isLoading = false;
             return;
           }
 
           this.errorMessage = response.message;
+          this.isLoading = false;
         }
         else {
+          this.isLoading = false;
           this.authService.setToken(response.data?.token!); 
           this.router.navigate(['/home']);
           this.formGroup.reset();
         }
       },
       error: err => {
+        this.isLoading = false;
         this.errorMessage = 'Hubo un error al realizar el registro, por favor intentar denuevo';
         console.log(err);
       }
     });
 
-    this.isLoading = false;
   }
 }

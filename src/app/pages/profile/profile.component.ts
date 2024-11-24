@@ -3,6 +3,7 @@ import { User } from '../../models/user.interface';
 import { UserService } from '../../services/user.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AngularFireStorage } from '@angular/fire/compat/storage';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-profile',
@@ -64,37 +65,53 @@ export class ProfileComponent implements OnInit {
     }
   }
 
-  async editProfile() {
-    if (!this.formGroup.valid) {
-      this.formGroup.markAllAsTouched();
-      return;
-    }
-    
-    // Upload image to firebase
-    if (this.selectedImage) {
-      const filePath = `profile-images/${this.selectedImage.name}`;
-      const uploadTask = await this.fireStorage.upload(filePath, this.selectedImage);
-      const url = await uploadTask.ref.getDownloadURL();
-
-      // Preview image
-      this.userService.setUserInfo({
-        ...this.userService.getUserInfoProvider(),
-        image: url
-      });
-    }
-
-    this.formGroup.value.image = this.userService.getUserInfoProvider().image;
-    this.userService.setUserInfo(this.formGroup.value);
-    this.userService.udpateUserInfo(this.formGroup.value).subscribe({
-      next: response => {
-        if (response.success) {
-          console.log(response);
+  editProfile() {
+    Swal.fire({
+      title: "¿Seguro que quieres editar tu perfil?",
+      icon: "warning",
+      color: "#ffffff",
+      background: "#161A3C",
+      showCancelButton: true,
+      confirmButtonText: "Sí, editar",
+      cancelButtonText: `Cerrar`
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        if (!this.formGroup.valid) {
+          this.formGroup.markAllAsTouched();
+          return;
         }
-      },
-      error: err => {
-        console.log(err)
+        
+        // Upload image to firebase
+        if (this.selectedImage) {
+          const filePath = `profile-images/${this.selectedImage.name}`;
+          const uploadTask = await this.fireStorage.upload(filePath, this.selectedImage);
+          const url = await uploadTask.ref.getDownloadURL();
+    
+          // Preview image
+          this.userService.setUserInfo({
+            ...this.userService.getUserInfoProvider(),
+            image: url
+          });
+        }
+    
+        this.formGroup.value.image = this.userService.getUserInfoProvider().image;
+        this.userService.setUserInfo(this.formGroup.value);
+        this.userService.udpateUserInfo(this.formGroup.value).subscribe({
+          next: response => {
+            if (response.success) {
+              Swal.fire({
+                title: "Perfil actualizado",
+                text: "Tu perfil ha sido actualizado correctamente",
+                icon: "success"
+              });
+            }
+          },
+          error: err => {
+            console.log(err)
+          }
+        });
       }
-    })
+    });
   }
 
 }

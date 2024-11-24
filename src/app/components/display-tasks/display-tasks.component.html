@@ -26,7 +26,7 @@
             <div class="card-task-information">
                 <div [class.checked]="task.checked" class="task-title">
                     {{ task.title }}
-                    <i *ngIf="!completed" class="fa-solid fa-pen-to-square edit-task"></i>
+                    <i *ngIf="!completed" class="fa-solid fa-pen-to-square edit-task" (click)="onSelectTask(task)"></i> <!--Open edit mode-->
                 </div>
                 <p>{{ getListType(task.listType!) }}</p>
                 <div class="card-task-description">{{ task.description }}</div>

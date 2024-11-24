@@ -5,6 +5,7 @@ import { User } from '../../models/user.interface';
 import { AuthService } from '../../services/auth.service';
 import { UserService } from '../../services/user.service';
 import { TaskService } from '../../services/task.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-sidebar',
@@ -35,19 +36,31 @@ export class SidebarComponent implements OnInit {
   }
 
   deleteList(index: number) {
-    const element = this.listTypeService.getListTypeArray()[index];
-    const listId = element._id;
+    Swal.fire({
+      title: "¿Seguro que quieres borrar este listado?",
+      icon: "warning",
+      color: "#ffffff",
+      background: "#161A3C",
+      showCancelButton: true,
+      confirmButtonText: "Sí, borrar",
+      cancelButtonText: `Cerrar`
+    }).then((result) => {
+      if (result.isConfirmed) {
+        const element = this.listTypeService.getListTypeArray()[index];
+        const listId = element._id;
 
-    this.listTypeService.removeListType(index);
+        this.listTypeService.removeListType(index);
 
-    this.listTypeService.deleteListType(listId!).subscribe({
-      next: response => {
-        console.log(response);
-      },
-      error: err => {
-        console.log(err);
+        this.listTypeService.deleteListType(listId!).subscribe({
+          next: response => {
+            console.log(response);
+          },
+          error: err => {
+            console.log(err);
+          }
+        });
       }
-    })
+    });
     
   }
 }

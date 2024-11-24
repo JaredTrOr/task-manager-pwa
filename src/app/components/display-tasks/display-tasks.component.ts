@@ -1,8 +1,9 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import TaskToDo from '../../models/task.interface';
 import { convertDateToString } from '../../utils/date-converter';
 import ListType from '../../models/list.interface';
 import { TaskService } from '../../services/task.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-display-tasks',
@@ -13,6 +14,7 @@ export class DisplayTasksComponent {
   @Input() tasks!: TaskToDo[];
   @Input() listTypesArray!: ListType[];
   @Input() completed!: boolean;
+  @Output() selectTaskEvent = new EventEmitter<TaskToDo>();
   convertDateToString = convertDateToString;
 
   constructor(
@@ -54,15 +56,34 @@ export class DisplayTasksComponent {
   }
 
   removeTask(index: number) {
-    const task = this.taskService.getTaskArray()[index];
-    this.taskService.removeTask(index);
-    this.taskService.deleteTask(task._id!).subscribe({
-      next: response => {
-        console.log(response);
-      },
-      error: err => {
-        console.log(err);
-      }
-    })
+
+    Swal.fire({
+      title: "¿Seguro que quieres borrar esta tarea?",
+      icon: "warning",
+      color: "#ffffff",
+      background: "#161A3C",
+      showCancelButton: true,
+      confirmButtonText: "Sí, borrar",
+      cancelButtonText: `Cerrar`
+    }).then((result) => {
+      
+      if (result.isConfirmed) {
+        const task = this.taskService.getTaskArray()[index];
+        this.taskService.removeTask(index);
+        this.taskService.deleteTask(task._id!).subscribe({
+          next: response => {
+            console.log(response);
+          },
+          error: err => {
+            console.log(err);
+          }
+        })
+      } 
+    });
+
+  }
+
+  onSelectTask(task: TaskToDo) {
+    this.selectTaskEvent.emit(task);
   }
 }

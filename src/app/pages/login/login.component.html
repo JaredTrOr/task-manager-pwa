@@ -42,7 +42,10 @@
         </div>
         
         <div class="btn-row">
-            <button type="submit" class="btn btn-primary">Iniciar sesión</button>
+            <button type="submit" class="btn btn-primary">
+                <app-loading [isLoading]="isLoading"></app-loading>
+                <span *ngIf="!isLoading">Iniciar sesión</span>
+            </button>
             <!-- <button class="btn"><img src="/assets/google-icon.png" alt=""></button> -->
             <p>¿Aún no tienes una cuenta? <a routerLink="/sign-up" class="link">Crear una cuenta</a></p>
         </div>
