@@ -8,6 +8,7 @@
         [tasks]="taskService.getUncheckedTasks()"
         [listTypesArray]="listTypesService.getListTypeArray()" 
         [completed]="false"
+        (selectTaskEvent)="onSelectTaskEvent($event)"
     >
     </app-display-tasks>
 
@@ -15,6 +16,8 @@
     <app-create-task 
         [isOpen]="isCreateTaskOpen" 
         [listTypesArray]="listTypesService.getListTypeArray()"
+        [selectedTask]="selectedTask"
         (closeCreateTaskEvent)="closeCreateTask($event)">
     </app-create-task>
+
 </section>

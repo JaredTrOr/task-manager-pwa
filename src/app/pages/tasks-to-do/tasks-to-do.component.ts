@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { TaskService } from '../../services/task.service';
 import { ListTypeService } from '../../services/list-type.service';
+import TaskToDo from '../../models/task.interface';
 
 @Component({
   selector: 'app-tasks-to-do',
@@ -9,7 +10,8 @@ import { ListTypeService } from '../../services/list-type.service';
 })
 export class TasksToDoComponent implements OnInit{
 
-  isCreateTaskOpen = false;
+  isCreateTaskOpen: boolean = false;
+  selectedTask!: TaskToDo;
 
   constructor(
     public taskService: TaskService,
@@ -36,6 +38,11 @@ export class TasksToDoComponent implements OnInit{
 
   closeCreateTask(toggledValue : boolean) {
     this.isCreateTaskOpen = toggledValue;
+  }
+
+  onSelectTaskEvent(task: TaskToDo) {
+    this.selectedTask = {...task};
+    this.isCreateTaskOpen = true;
   }
 
 }

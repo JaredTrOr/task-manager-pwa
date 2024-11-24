@@ -20,6 +20,10 @@ export class TaskService {
     return this.http.get<ApiResponse<TaskToDo[]>>(`${this.URL}/get-tasks`);
   }
 
+  createOrUpdateTask(task: TaskToDo) {
+    return task._id ? this.updateTask(task) : this.createTask(task);
+  }
+
   createTask(task: TaskToDo) {
     return this.http.post<ApiResponse<TaskToDo>>(`${this.URL}/create-task`, task);
   }
@@ -39,6 +43,11 @@ export class TaskService {
   // Handle task array
   pushTask(task: TaskToDo) {
     this.taskArray.push(task);
+  }
+
+  updateTaskArray(task: TaskToDo) {
+    const index = this.taskArray.findIndex(t => t._id === task._id);
+    this.taskArray[index] = task;
   }
 
   removeTask(index: number) {
