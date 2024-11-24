@@ -12,6 +12,11 @@ import { ProfileComponent } from './pages/profile/profile.component';
 
 const routes: Routes = [
   {
+    path: '',
+    redirectTo: 'login',
+    pathMatch: 'full', // Ensures the redirect only happens for the root path
+  },
+  {
     path: 'login',
     component: LoginComponent,
     title: 'Inicio sesión'
@@ -55,7 +60,7 @@ const routes: Routes = [
   },
   {
     path: '**',
-    redirectTo: 'login'
+    redirectTo: 'login' // --> Page not found
   }
 ];
 
