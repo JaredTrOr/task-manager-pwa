@@ -1,0 +1,9 @@
+Page to generate icons for manifest:
+https://manifest-gen.netlify.app/
+
+Presentation key words:
+
+-Convert angular web to PWA and explain the files added by the command
+-Explain the manifest with the icons
+-Explain icons
+-Offline mode (cache) with service worker
