@@ -1,1 +1,6 @@
-<p>selected-list-type works!</p>
+<app-display-tasks 
+    [tasks]="tasks"
+    [listTypesArray]="listTypeService.getListTypeArray()" 
+    [completed]="false"
+    (selectTaskEvent)="onSelectTaskEvent($event)"
+></app-display-tasks>

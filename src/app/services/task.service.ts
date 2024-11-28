@@ -20,6 +20,10 @@ export class TaskService {
     return this.http.get<ApiResponse<TaskToDo[]>>(`${this.URL}/get-tasks`);
   }
 
+  getTaskByListType(listTypeId: string) {
+    return this.http.get<ApiResponse<TaskToDo[]>>(`${this.URL}/get-tasks-by-list-type/${listTypeId}`);
+  }
+
   createOrUpdateTask(task: TaskToDo) {
     return task._id ? this.updateTask(task) : this.createTask(task);
   }
