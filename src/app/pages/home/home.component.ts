@@ -63,7 +63,7 @@ export class HomeComponent implements OnInit {
     .then(sub => {
       const token = JSON.parse(JSON.stringify(sub));
       token.userId = this.userService.getUserInfoProvider()._id;
-      
+
       this.pushNotificationService.saveSubscription(token).subscribe({
         next: response => {
           console.log(response);

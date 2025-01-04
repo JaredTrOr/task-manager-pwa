@@ -49,14 +49,46 @@ export class SidebarComponent implements OnInit {
         const element = this.listTypeService.getListTypeArray()[index];
         const listId = element._id;
 
-        this.listTypeService.removeListType(index);
-
         this.listTypeService.deleteListType(listId!).subscribe({
           next: response => {
+
             console.log(response);
+
+            if (!response.success) {
+              
+              if(response.message.includes('error')) {
+                Swal.fire({
+                  title: "Error",
+                  text: 'Ha ocurrido un error al intentar borrar el listado',
+                  icon: "error",
+                  color: "#ffffff",
+                  background: "#161A3C",
+                });
+              }
+
+              Swal.fire({
+                title: "Error",
+                text: response.message,
+                icon: "error",
+                color: "#ffffff",
+                background: "#161A3C",
+              });
+
+              return;
+
+            }
+
+            this.listTypeService.removeListType(index);
           },
           error: err => {
             console.log(err);
+            Swal.fire({
+              title: "Error",
+              text: 'Ha ocurrido un error al intentar borrar el listado',
+              icon: "error",
+              color: "#ffffff",
+              background: "#161A3C",
+            });
           }
         });
       }
